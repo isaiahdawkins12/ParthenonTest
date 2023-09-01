@@ -24,16 +24,20 @@ vector<cronJob> parseLine(){
 		istringstream seg(line);
 		string token;
 		string integer;
-
+		
 		// breaking each line down further into tokens, delimited by ' '
 		// going to convert each of these tokens into integers using std::stoi
 		// we only need the first five tokens: minute, hour, day, month, dayOfWeek
 		for (int i = 0; i < 6; ++i){
+			
 			// getline(seg, token, ' ');
 			seg >> token;
 			// will need to get rid of the chars, loop through each token in search for the integers and concatenate onto string integer
- 
+			bool wildcard = false; 
 			for (char c: token){
+				if (c == '*'){
+					wildcard = true;	
+				}
 				if (isdigit(c))
 					integer += c;
 			}
@@ -52,20 +56,34 @@ vector<cronJob> parseLine(){
 					job.dayOfWeek = integerConverted;
 				}
 				integer.clear();
-
-			} else if (integer.empty()) {
+			} else if (integer.empty()) { // else if integer was empty, set the field to 1, because it means thatits wildcard??
 				if (i == 0) {
-					job.minute = 0;
+					job.minute = 1;
 				} else if (i == 1) {
-					job.hour = 0;
+					job.hour = 1;
 				} else if (i == 2) {
-					job.day = 0;
+					job.day = 1;
 				} else if (i == 3) {
-					job.month = 0;
+					job.month = 1;
 				} else if (i == 4) {
-					job.dayOfWeek = 0;
+					job.dayOfWeek = 1;
 				}
-				integer.clear();
+			
+			integer.clear();
+			}
+			// if an '*' was found, we want to set the isEvery___ flag true for so that we can make the proper calculation for displaying the next runtime
+			if (wildcard == true){
+				if (i == 0){
+					job.isEveryMinute = true;
+				}else if (i == 1){
+					job.isEveryHour = true;
+				}else if (i == 2){
+					job.isEveryDay = true;
+				}else if (i == 3){
+					job.isEveryMonth = true;
+				}else if (i == 4){
+					job.isEveryDayOfWeek = true;
+				}
 			}
 		}
 	

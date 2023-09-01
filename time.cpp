@@ -12,12 +12,28 @@ void calcNextExec(const cronJob& job){
 	tm current_tm = *localtime(&currentTime_t);
 
 	// if -1 flag set, we need to set as current day or time	
-	current_tm.tm_hour = job.hour;
-	current_tm.tm_min = job.minute;
+
+	if (job.isEveryMinute == true) {	
+		current_tm.tm_min = job.minute + job.minute;
+	} else {
+		current_tm.tm_min = job.minute;
+	}
+	if (job.isEveryHour == true){
+		current_tm.tm_hour = job.hour + job.hour;
+	} else {
+		current_tm.tm_hour = job.hour + 1;
+	}
+	if (job.isEveryDay == true){
+		current_tm.tm_mday = job.day + job.day;
+	} else {
+		current_tm.tm_mday = job.day;
+	}
+	if (job.isEveryMonth == true){
+		current_tm.tm_mon = job.month + job.month;
+	} else {
+		current_tm.tm_mon = job.month;	
+	}
 	current_tm.tm_sec = 0;
-	current_tm.tm_mday = job.day;
-	//month is 0 based
-	current_tm.tm_mon = job.month -1;	
 
 	// calculate difference between execution and current job time
 	auto nextExecutionTime = std::chrono::system_clock::from_time_t(std::mktime(&current_tm));
@@ -25,55 +41,5 @@ void calcNextExec(const cronJob& job){
 	time_t nextExecutionTime_t = std::chrono::system_clock::to_time_t(nextExecutionTime);
 	cout << "Next execution time: " << std::ctime(&nextExecutionTime_t);
 	
-
-
-	// formula for finding the next run time should be something like:
-	// current time % job time increment = time increment until next run
-	/*
-	int minutes = current_tm.tm_min;
-	int remainder = minutes % job.minute;
-	if (remainder == 0) {
-		nextExecutionTime += std::chrono::minutes(job.minute);
-	}
-	if (job.minute != 0) {
-		nextExecutionTime = std::chrono::minutes(remainder);
-	}
-	
-	int hours = current_tm.tm_hour;
-	remainder = hours % job.hour;
-	if (remainder == 0) {
-		nextExecutionTime += std::chrono::hours(job.hours);
-	}
-	if (job.minute != 0) {
-		nextExecutionTime = std::chrono::hours(remainder);
-	}
-
-	int day = current_tm.tm_mday;
-	remainder = day % job.day;
-	if (remainder == 0) {
-		nextExecutionTime += std::chrono::day(job.day);
-	}
-	if (job.minute != 0) {
-		nextExecutionTime = std::chrono::day(remainder);
-	}	
-
-	int month = current_tm.tm_mon;
-	remainder = month % job.month;
-	if (remainder == 0) {
-		nextExecutionTime += std::chrono::month(job.month);
-	}
-	if (job.minute != 0) {
-		nextExecutionTime = std::chrono::month(remainder);
-	}
-	
-	int weekDay = current_tm.tm_wday;
-	remainder = weekday % job.dayOfWeek;
-	if (remainder == 0) {
-		nextExecutionTime += std::chrono::weekday(job.dayOfWeek);
-	}
-	if (job.minute != 0) {
-		nextExecutionTime = std::chrono::weekday(remainder);
-	}
-
-	time_t nextExecutionTime_t = std::chrono::system_clock::to_time_t(nextExecutionTime);	*/
+	return;
 }

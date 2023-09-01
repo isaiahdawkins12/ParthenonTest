@@ -16,6 +16,12 @@ struct cronJob {
 	int month;
 	int dayOfWeek;
 	string command;
+	
+	bool isEveryMinute = false;
+	bool isEveryHour = false;
+	bool isEveryDay = false;
+	bool isEveryMonth = false;
+	bool isEveryDayOfWeek = false;
 };
 
 // function to parse lines for crontab commands
