@@ -6,8 +6,9 @@
 
 using std::string, std::ifstream, std::cout, std::cerr, std::endl, std::istringstream, std::getline, std::isdigit, std::vector;
 
-vector<int> parseLine(){
+vector<vector<int>> parseLine(){
 	// Open file
+	vector<vector<int>> cronVector;
 	vector<int> cronData;	
 	int minute, hour, day, month, dayOfWeek;
 	ifstream file("cron.txt");
@@ -29,31 +30,54 @@ vector<int> parseLine(){
 
 		// breaking each line down further into tokens, delimited by ' '
 		// going to convert each of these tokens into integers using std::stoi
-		// we only need the first five tokens: minute, hour, day, month, dayOfWeek.		
+		// we only need the first five tokens: minute, hour, day, month, dayOfWeek
 		for (int i = 0; i < 5; ++i){
 			getline(seg, token, ' ');
 			// will need to get rid of the chars, loop through each token in search for the integers and concatenate onto string integer
 			for (char c: token){
-				// if the current char is a 
 				if (isdigit(c))
 					integer += c;
 			}
 			// token is fully parsed for integers and now we convert to integer using std::stoi and push_back onto vector cronData to use for comparison against system time
-			int integerConverted = stoi(integer);
-			cronData.push_back(integerConverted);
+			if (!integer.empty()) { //checks to make sure that integer string is not empty, else stoi will throw an exception
+				int integerConverted = stoi(integer);
+				cronData.push_back(integerConverted);
+				integer.clear();
+			}
 		}
+		// push back the values stored in a vector of 5 elements into cronVector, a vector of vectors
+		cronVector.push_back(cronData);
+		// making sure to clear the cronData vector before moving to the next line
+		cronData.clear();
 	}
-	return cronData;
+	return cronVector;
 }
 
 
 int main(){
+	vector<vector<int>> parsedData;
 	try {
-		parseLine();	
+		parsedData = parseLine();	
 	} 
 	catch(int error_num) {
 		if (error_num == 1)
-			cout << "Error: Coulnd't read file" << endl;
+			cout << "Error: Couldn't read file" << endl;
 	}
+
+
+
+	// test vector data
+	for (const vector<int>& inner : parsedData){
+		for (int val : inner) {
+			cout << val << " ";
+		}	
+		cout << endl;
+	}
+	/*	
+	unsigned int vecSize = parsedData.size();
+	for (unsigned int i = 0; i < vecSize; ++i){
+		cout << parsedData[i] << " "; 
+	}
+	*/	
 	return 0;	
 }
