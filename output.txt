@@ -1,0 +1,168 @@
+Minute: 1
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job1.php
+Next execution time: Tue Nov 29 23:01:00 2022
+ ****************************** 
+Minute: 1
+Hour: 152305
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job2.php
+Next execution time: Sun Apr 15 01:01:00 2040
+ ****************************** 
+Minute: 2
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job3.php
+Next execution time: Tue Nov 29 23:02:00 2022
+ ****************************** 
+Minute: 5
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job4.php
+Next execution time: Tue Nov 29 23:05:00 2022
+ ****************************** 
+Minute: 10
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job5.php
+Next execution time: Tue Nov 29 23:10:00 2022
+ ****************************** 
+Minute: 0
+Hour: 2
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job6.php
+Next execution time: Wed Nov 30 01:00:00 2022
+ ****************************** 
+Minute: 10
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job7.php
+Next execution time: Tue Nov 29 23:10:00 2022
+ ****************************** 
+Minute: 10
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job8.php
+Next execution time: Tue Nov 29 23:10:00 2022
+ ****************************** 
+Minute: 25
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job9.php
+Next execution time: Tue Nov 29 23:25:00 2022
+ ****************************** 
+Minute: 30
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job10.php
+Next execution time: Tue Nov 29 23:30:00 2022
+ ****************************** 
+Minute: 45
+Hour: 10
+Day: 1
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job11.php
+Next execution time: Thu Dec  1 09:45:00 2022
+ ****************************** 
+Minute: 1
+Hour: 20
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job12.php
+Next execution time: Wed Nov 30 19:01:00 2022
+ ****************************** 
+Minute: 0
+Hour: 0
+Day: 1125
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job14.php
+Next execution time: Sun Dec 28 23:00:00 2025
+ ****************************** 
+Minute: 40
+Hour: 23
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job15.php
+Next execution time: Wed Nov 30 22:40:00 2022
+ ****************************** 
+Minute: 20
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job16.php
+Next execution time: Tue Nov 29 23:20:00 2022
+ ****************************** 
+Minute: 15
+Hour: 2
+Day: 0
+Month: 0
+Day of Week: 16
+Command:  -d "memory_limit=600M" /app/site/cron/job17.php
+Next execution time: Wed Nov 30 01:15:00 2022
+ ****************************** 
+Minute: 50
+Hour: 2
+Day: 16831
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job18.php
+Next execution time: Sat Dec 29 01:50:00 2068
+ ****************************** 
+Minute: 0
+Hour: 3
+Day: 0
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job19.php
+Next execution time: Wed Nov 30 02:00:00 2022
+ ****************************** 
+Minute: 48
+Hour: 0
+Day: 0
+Month: 0
+Day of Week: 2
+Command:  /app/site/cron/job20.php
+Next execution time: Tue Nov 29 23:48:00 2022
+ ****************************** 
+Minute: 50
+Hour: 1
+Day: 16831
+Month: 0
+Day of Week: 7
+Command:  /app/site/cron/job21.php
+Next execution time: Sat Dec 29 00:50:00 2068
+ ****************************** 
+Minute: 0
+Hour: 0
+Day: 2
+Month: 0
+Day of Week: 0
+Command:  /app/site/cron/job22.php
+Next execution time: Thu Dec  1 23:00:00 2022
+ ****************************** 
