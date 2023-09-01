@@ -1,7 +1,7 @@
 #include "parser.h"
 #include "time.h"
 
-using std::std::chrono, std::time_t, std::tm, std::localtime, std::ctime;
+using std::time_t, std::tm, std::localtime, std::ctime;
 	
 void calcNextExec(const cronJob& job){		
 	// get system time and convert to a time_t format
@@ -10,12 +10,26 @@ void calcNextExec(const cronJob& job){
 	// move from time_t to tm	
 	time_t currentTime_t = std::chrono::system_clock::to_time_t(currentTime);
 	tm current_tm = *localtime(&currentTime_t);
+
+	// if -1 flag set, we need to set as current day or time	
+	current_tm.tm_hour = job.hour;
+	current_tm.tm_min = job.minute;
+	current_tm.tm_sec = 0;
+	current_tm.tm_mday = job.day;
+	//month is 0 based
+	current_tm.tm_mon = job.month -1;	
+
+	// calculate difference between execution and current job time
+	auto nextExecutionTime = std::chrono::system_clock::from_time_t(std::mktime(&current_tm));
+
+	time_t nextExecutionTime_t = std::chrono::system_clock::to_time_t(nextExecutionTime);
+	cout << "Next execution time: " << std::ctime(&nextExecutionTime_t);
 	
-	// variable to store and manipulate the execution time we are looking for
-	auto nextExecutionTime = currentTime;	
+
 
 	// formula for finding the next run time should be something like:
 	// current time % job time increment = time increment until next run
+	/*
 	int minutes = current_tm.tm_min;
 	int remainder = minutes % job.minute;
 	if (remainder == 0) {
@@ -35,7 +49,7 @@ void calcNextExec(const cronJob& job){
 	}
 
 	int day = current_tm.tm_mday;
-	remainder = days % job.day;
+	remainder = day % job.day;
 	if (remainder == 0) {
 		nextExecutionTime += std::chrono::day(job.day);
 	}
@@ -61,6 +75,5 @@ void calcNextExec(const cronJob& job){
 		nextExecutionTime = std::chrono::weekday(remainder);
 	}
 
-	time_t nextExecutionTime_t = std::chrono::system_clock::to_time_t(nextExecutionTime);	
-	cout << "Next execution time: " << ctime(&nextExecutionTime_t); 
+	time_t nextExecutionTime_t = std::chrono::system_clock::to_time_t(nextExecutionTime);	*/
 }

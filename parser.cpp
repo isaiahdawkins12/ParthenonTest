@@ -1,4 +1,5 @@
 #include "parser.h"
+#include "time.h"
 
 using std::string, std::ifstream, std::cout, std::cerr, std::endl, std::istringstream, std::getline, std::isdigit, std::vector;
 
@@ -82,6 +83,7 @@ void printCronJobs(const vector<cronJob>& cronJobsVec){
 		cout << "Month: " << job.month << endl;
 		cout << "Day of Week: " << job.dayOfWeek << endl;
 		cout << "Command: " << job.command << endl;
+		calcNextExec(job);
 		cout << " ****************************** " << endl;		
 	}
 	return;
