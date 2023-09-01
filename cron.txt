@@ -1,4 +1,4 @@
-MAILTO="someguy@somecompany.com"
+#MAILTO="someguy@somecompany.com"
 
 # minute, hour, dom, month, dow
 

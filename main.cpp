@@ -19,16 +19,19 @@ vector<int> parseLine(){
 	string line;
 	// parses each line, default delimiter '/n' 
 	while (getline(file, line)) {
+		// skip over lines that are empty space or comments
+		if (line.empty() || line[0] == '#')
+			continue;
+
 		istringstream seg(line);
 		string token;
 		string integer;
-	
-	// breaking each line down further into tokens, delimited by ' '
-	// going to convert each of these tokens into integers using std::stoi
-	// we only need the first five tokens: minute, hour, day, month, dayOfWeek.		
+
+		// breaking each line down further into tokens, delimited by ' '
+		// going to convert each of these tokens into integers using std::stoi
+		// we only need the first five tokens: minute, hour, day, month, dayOfWeek.		
 		for (int i = 0; i < 5; ++i){
 			getline(seg, token, ' ');
-
 			// will need to get rid of the chars, loop through each token in search for the integers and concatenate onto string integer
 			for (char c: token){
 				// if the current char is a 
@@ -42,6 +45,8 @@ vector<int> parseLine(){
 	}
 	return cronData;
 }
+
+
 int main(){
 	try {
 		parseLine();	
