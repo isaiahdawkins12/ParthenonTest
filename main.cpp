@@ -12,9 +12,10 @@ int main(){
 		if (error_num == 1)
 			cout << "Error: Couldn't read file" << endl;
 	}
-		
-	
 
+	printCronJobs(parsedCronJobs);	
+	
+	/*
 	// testing vector data
 	for (const cronJob& job : parsedCronJobs){
 		cout << " ************************* " << endl;
@@ -25,7 +26,6 @@ int main(){
 		cout << "Day of Week: " << job.dayOfWeek << endl;
 		cout << " ************************* " << endl;
 	}	
-	/*	
 	unsigned int vecSize = parsedData.size();
 	for (unsigned int i = 0; i < vecSize; ++i){
 		cout << parsedData[i] << " "; 

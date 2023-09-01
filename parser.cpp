@@ -27,9 +27,11 @@ vector<cronJob> parseLine(){
 		// breaking each line down further into tokens, delimited by ' '
 		// going to convert each of these tokens into integers using std::stoi
 		// we only need the first five tokens: minute, hour, day, month, dayOfWeek
-		for (int i = 0; i < 5; ++i){
-			getline(seg, token, ' ');
+		for (int i = 0; i < 6; ++i){
+			// getline(seg, token, ' ');
+			seg >> token;
 			// will need to get rid of the chars, loop through each token in search for the integers and concatenate onto string integer
+ 
 			for (char c: token){
 				if (isdigit(c))
 					integer += c;
@@ -65,8 +67,23 @@ vector<cronJob> parseLine(){
 				integer.clear();
 			}
 		}
+	
+		getline(seg, job.command);
 		cronJobsVector.push_back(job);
 	}
 	return cronJobsVector;
+}
+
+void printCronJobs(const vector<cronJob>& cronJobsVec){
+	for (const cronJob& job : cronJobsVec){
+		cout << "Minute: " << job.minute << endl;
+		cout << "Hour: " << job.hour << endl;
+		cout << "Day: " << job.day << endl;
+		cout << "Month: " << job.month << endl;
+		cout << "Day of Week: " << job.dayOfWeek << endl;
+		cout << "Command: " << job.command << endl;
+		cout << " ****************************** " << endl;		
+	}
+	return;
 }
 

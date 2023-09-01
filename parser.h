@@ -15,11 +15,12 @@ struct cronJob {
 	int day;
 	int month;
 	int dayOfWeek;
+	string command;
 };
 
 // function to parse lines for crontab commands
 vector<cronJob> parseLine();
 
-
+void printCronJobs(const vector<cronJob>& cronJobsVec);
 #endif
 
