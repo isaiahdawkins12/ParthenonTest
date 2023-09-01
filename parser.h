@@ -1,3 +1,6 @@
+#ifndef PARSER_H
+#define PARSER_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,11 +9,16 @@
 
 using std::string, std::ifstream, std::cout, std::cerr, std::endl, std::istringstream, std::getline, std::isdigit, std::vector;
 
-#ifndef PARSER_H
-#define PARSER_H
+struct cronJob {
+	int minute;
+	int hour;
+	int day;
+	int month;
+	int dayOfWeek;
+};
 
 // function to parse lines for crontab commands
-vector<vector<int>> parseLine();
+vector<cronJob> parseLine();
 
 
 #endif

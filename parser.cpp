@@ -2,10 +2,10 @@
 
 using std::string, std::ifstream, std::cout, std::cerr, std::endl, std::istringstream, std::getline, std::isdigit, std::vector;
 
-vector<vector<int>> parseLine(){
+
+vector<cronJob> parseLine(){
 	// Open file
-	vector<vector<int>> cronVector;
-	vector<int> cronData;	
+	vector<cronJob> cronJobsVector;	
 	ifstream file("cron.txt");
 	
 	if (!file.is_open()) {
@@ -18,7 +18,8 @@ vector<vector<int>> parseLine(){
 		// skip over lines that are empty space or comments
 		if (line.empty() || line[0] == '#')
 			continue;
-
+		
+		cronJob job;
 		istringstream seg(line);
 		string token;
 		string integer;
@@ -34,17 +35,38 @@ vector<vector<int>> parseLine(){
 					integer += c;
 			}
 			// token is fully parsed for integers and now we convert to integer using std::stoi and push_back onto vector cronData to use for comparison against system time
-			if (!integer.empty()) { //checks to make sure that integer string is not empty, else stoi will throw an exception
+			if (!integer.empty()) {
 				int integerConverted = stoi(integer);
-				cronData.push_back(integerConverted);
+				if (i == 0) {
+					job.minute = integerConverted;	
+				} else if (i == 1) {
+					job.hour = integerConverted;
+				} else if (i == 2) {
+					job.day = integerConverted;
+				} else if (i == 3) {
+					job.month = integerConverted;
+				} else if (i == 4) {
+					job.dayOfWeek = integerConverted;
+				}
+				integer.clear();
+
+			} else if (integer.empty()) {
+				if (i == 0) {
+					job.minute = 0;
+				} else if (i == 1) {
+					job.hour = 0;
+				} else if (i == 2) {
+					job.day = 0;
+				} else if (i == 3) {
+					job.month = 0;
+				} else if (i == 4) {
+					job.dayOfWeek = 0;
+				}
 				integer.clear();
 			}
 		}
-		// push back the values stored in a vector of 5 elements into cronVector, a vector of vectors
-		cronVector.push_back(cronData);
-		// making sure to clear the cronData vector before moving to the next line
-		cronData.clear();
+		cronJobsVector.push_back(job);
 	}
-	return cronVector;
+	return cronJobsVector;
 }
 
